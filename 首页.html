@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+		<script src="js/zepto.js"></script>
+		<script src="js/zepto.fx.js"></script>
+		<script src="js/zTouch.min.js"></script>
+		<script src="js/js.js"></script>
+		<title></title>
+		<style>
+			*{margin:0;padding: 0;list-style: none;outline: none;font-family: "微软雅黑";color: #333;}
+			a{text-decoration: none;display: block;}
+			#top{width:100%;height: 1.875rem;background: #1f1f1f;border: 0.025rem solid #2e2e2e;border-bottom-color: #7c7c7c;position: fixed;top: 0;z-index: 100;}
+			.Imga{width: 3.125rem;height: 1.025rem;float: left;margin-top: 0.425rem;margin-left: 0.425rem;}
+			.Imgb{width: 0.875rem;height: 1.025rem;float: left;margin-top: 0.425rem;margin-left: 4.275rem;}
+			.Imgc{width: 0.875rem;height: 1.025rem;float: left;margin-top: 0.425rem;margin-left: 0.85rem;}
+			.aa{width: 1.25rem;height: 1.025rem;margin-top: 0.425rem;font-size: 0.525rem;color:#c8c8c8;text-align: center;line-height: 1.05rem;float: right;margin-right: 0.6rem;margin-top:0.425rem;}
+			.ab{width: 2.375rem;height: 0.825rem;margin-top: 0.55rem;font-size: 0.45rem;color:#0bbe06;text-align: center;line-height: 0.825rem;border: 0.025rem solid #0bbe06;border-radius:1rem;float: right;margin-right: 0.425rem;margin-top:0.425rem;}
+			nav {width:100%;height: 1.5rem;line-height: 1.5rem;background: #f4f4f4;border-bottom: 1px solid #dedede; position: fixed;left: 0;top: 1.875rem;overflow: hidden;z-index: 3;}
+ 			#nava {width:220%;height: 1.5rem;transition:all 0.3s ease;padding-right:2rem;position: absolute;left: 0;top: 0;}
+			#nava a {display: inline-block;height: 100%;box-sizing: border-box;font-size: 0.6rem;color: #333333;padding: 0 0.475rem;float: left;}
+			
+			nav span {display: inline-block;width: 1.925rem;height: 100%;line-height: 1.5rem;text-align: center;background: #f4f4f4;box-shadow: 0 0 0.4rem 0.4rem #dedede;position: absolute;right: 0;top: 0;}
+			nav span img {width: 0.75rem;} 								
+			#sousuo{height: 1.65rem;background: #ececec;border-bottom:0.025rem solid #c8c8c8;padding:0 0.3rem;position:fixed ;top:3.4rem;z-index: 150;}
+			#search {display: block;width: 15.35rem;height: 1.075rem;line-height: 1.075rem;text-align: center;font-size: 0.5rem;color: #20bc22;background: #fff;border: 1px solid #dcdcdc;border-radius: 1rem;margin: 0.2rem auto;}
+			#search img {width: 0.5rem;}		
+			.banner { width: 100%; height: 7.875rem; background: #fff; border-top: 1px solid #c8c8c8; border-bottom: 1px solid #e6e6e6; margin-top: 4.8rem;}
+			.banner_img {width: 97%;height: 6.4rem;overflow: hidden;margin: 0.3rem auto;position: relative;}
+			.banner_img ul {width: 1000%;position:absolute;left:0;top: 0.3rem;}
+			.banner_img ul li {width:10%;float: left;}
+			.banner_img ul li a img {width: 100%;}
+			.dot {width: 2.5rem;height: 0.5rem;background: rgba(0, 0, 0, 0.4);border-radius: 0.5rem;text-align: center;position: absolute;left: 50%;bottom: 0.3rem;margin-left: -1rem;}
+			.dot span {display: inline-block; width: 0.2rem;height: 0.2rem;border-radius: 50%;background: #cbcdce;margin: 0rem 0.02rem;margin-bottom: 0.75rem;}
+			.dot span.active {background: #20bc22;}
+			.count {height: 0.6rem;line-height: 0.6rem;font-size: 0.3rem;color: #fff;padding: 0 0.2rem; background: rgba(0, 0, 0, 0.7); position: absolute; right: 0;bottom: 0;}
+			.banner p {font-size: 0.5rem;line-height: 0.7rem;color: #333333;text-indent: 0.3rem;}	
+			#banner-nav {width: 100%;height: 3.55rem;background: #fff;position: relative;overflow: hidden;}
+ 			#banner-nava {width: 32rem;display: -webkit-box;-webkit-box-orient: horizontal; position: absolute;left: 0;top: 0;}
+ 			#banner-nava div {-webkit-box-flex: 1;text-align: center;}
+			#banner-nava div img {width: 1.825rem;height:1.825rem;margin: 0.35rem 0 0.2rem;}
+			#banner-nava div p {font-size: 0.5rem;color: #333333;}			
+			#jrzx{height: 17.2rem;border-top:0.3rem solid #f0f0f0;border-bottom: 0.275rem solid #f0f0f0;}
+			.jrzx-top{height:1.65rem;font-size:0.6rem;border-bottom: 0.025rem dashed #e5e5e5;margin:0 0.3rem;}
+			.jrzx-top img{width: 0.85rem;height: 0.85rem;margin-top: 0.3rem;float: left;}
+			.jrzx-top span{height:1.65rem;margin-left: 0.275rem;line-height: 1.5rem;display: block;float: left;}
+			.jrzx-nav{height: 0.5rem;line-height: 0.5rem;font-size: 0.55rem;margin-top: 0.5rem;padding: 0 1rem;}
+			.jrzx-nav img{width: 0.475rem;height: 0.475rem;display: block;float: left;}
+			.jrzx-nav span{height:0.5rem;line-height: 0.5rem;display: block;float: left;}
+			#jrzx ul{height: 11.5rem;padding: 0 0.3rem;margin-top: 0.6rem;}
+			#jrzx ul li{width: 7.525rem;heigh:5.55rem;font-size: 0.5rem;float: left;}
+			#jrzx ul img{width: 7.525rem;height: 4.275rem;}
+			#jrzx ul li a:nth-child(2){height: 1.275rem;line-height: 1.275rem;}
+			.jrzx-bottom{border-top:0.025rem solid #e6e6e6 ;height: 1.5rem;color: #20bc22;font-size: 0.5rem;}	
+			.jrzx-bottoml a{width: 8.5rem;height: 0.8rem;border-right: 0.025rem solid #e6e6e6;float: left;color: #20bc22;margin-top: 0.3rem;text-align: center;}
+			.jrzx-bottomr a{width: 7.425rem;height: 0.8rem;float: left;color: #20bc22;margin-top: 0.3rem;text-align: center;}
+			.jrzx-bottom img{width: 0.5rem;height: 0.475rem;}
+			
+			#dsj{height: 19.125rem;border-bottom:0.3rem solid #f0f0f0;}
+			.dsj-top{height:1.65rem;font-size:0.6rem;margin:0 0.3rem;}
+			.dsj-top img{width: 0.85rem;height: 0.85rem;margin-top: 0.3rem;float: left;}
+			.dsj-top span{height:1.65rem;margin-left: 0.275rem;line-height: 1.5rem;display: block;float: left;}
+			#dsj ul{height: 16rem;padding: 0 0.3rem;}
+			#dsj ul li{width: 4.925rem;heigh:7.875rem;font-size: 0.5rem;float: left;margin-left: 0.3rem;}
+			#dsj ul img{width: 4.925rem;height: 6.575rem;}
+			#dsj ul li a:nth-child(2){height: 1.3rem;line-height: 1.3rem;}
+			.dsj-bottom{border-top:0.025rem solid #e6e6e6 ;height: 1.5rem;color: #20bc22;font-size: 0.5rem;}	
+			.dsj-bottoml a{width: 8.5rem;height: 0.8rem;border-right: 0.025rem solid #e6e6e6;float: left;color: #20bc22;margin-top: 0.35rem;text-align: center;}
+			.dsj-bottomr a{width: 7.425rem;height: 0.8rem;float: left;color: #20bc22;margin-top: 0.35rem;text-align: center;}
+			.dsj-bottom img{width: 0.5rem;height: 0.475rem;}
+			
+			#dy{height: 20rem;border-bottom:0.3rem solid #f0f0f0;}
+			.dy-top{height:1.65rem;font-size:0.6rem;margin:0 0.3rem;}
+			.dy-top img{width: 0.85rem;height: 0.85rem;margin-top: 0.3rem;float: left;}
+			.dy-top span{height:1.65rem;margin-left: 0.275rem;line-height: 1.5rem;display: block;float: left;}
+			#dy ul{height: 17rem;padding: 0 0.3rem;}
+			#dy ul li{width: 4.925rem;heigh:8.4rem;font-size: 0.5rem;float: left;margin-left: 0.3rem;}
+			#dy ul img{width: 4.925rem;height: 6.575rem;}
+			#dy ul li a:nth-child(2){height: 1.3rem;line-height: 1.3rem;}
+			.dy-bottom{border-top:0.025rem solid #e6e6e6 ;height: 1.5rem;color: #20bc22;font-size: 0.5rem;}	
+			.dy-bottoml a{width: 8.5rem;height: 0.8rem;border-right: 0.025rem solid #e6e6e6;float: left;color: #20bc22;margin-top: 0.3rem;text-align: center;}
+			.dy-bottomr a{width: 7.425rem;height: 0.8rem;float: left;color: #20bc22;margin-top: 0.45em;text-align: center;}
+			.dy-bottom img{width: 0.5rem;height: 0.475rem;}
+			
+			#zy{height: 22.8rem;border-bottom: 0.275rem solid #f0f0f0;}
+			.zy-top{height:1.65rem;font-size:0.6rem;margin:0 0.3rem;}
+			.zy-top img{width: 0.875rem;height: 0.875rem;margin-top: 0.3rem;float: left;}
+			.zy-top span{height:1.65rem;margin-left: 0.275rem;line-height: 1.5rem;display: block;float: left;}
+			#zy ul{height: 19.75rem;padding: 0 0.3rem;}
+			#zy ul li{width: 7.525rem;heigh:9.375rem;float: left;}
+			#zy ul img{width: 7.525rem;height: 4.275rem;}
+			#zy ul li a:nth-child(2){height: 1.125rem;line-height: 1.125rem;font-size: 0.5rem;}
+			#zy ul li a:nth-child(3){height: 0.875rem;line-height: 0.45rem;font-size: 0.45rem;color: #666;}
+			.zy-bottom{border-top:0.025rem solid #e6e6e6 ;height: 1.5rem;color: #20bc22;font-size: 0.5rem;}	
+			.zy-bottoml a{width: 8.5rem;height: 0.8rem;border-right: 0.025rem solid #e6e6e6;float: left;color: #20bc22;margin-top: 0.3rem;text-align: center;}
+			.zy-bottomr a{width: 7.425rem;height: 0.8rem;float: left;color: #20bc22;margin-top: 0.3rem;text-align: center;}
+			.zy-bottom img{width: 0.5rem;height: 0.475rem;}
+			
+			#dm{height: 20rem;border-bottom:0.3rem solid #f0f0f0;}
+			.dm-top{height:1.65rem;font-size:0.6rem;margin:0 0.3rem;}
+			.dm-top img{width: 0.85rem;height: 0.85rem;margin-top: 0.3rem;float: left;}
+			.dm-top span{height:1.65rem;margin-left: 0.275rem;line-height: 1.5rem;display: block;float: left;}
+			#dm ul{height: 17rem;padding: 0 0.3rem;}
+			#dm ul li{width: 4.925rem;heigh:8.4rem;font-size: 0.6rem;float: left;margin-left: 0.3rem;}
+			#dm ul img{width: 4.925rem;height: 6.575rem;}
+			#dm ul li a:nth-child(2){height: 1.3rem;line-height: 1.2rem;}
+			.dm-bottom{border-top:0.025rem solid #e6e6e6 ;height: 1.5rem;color: #20bc22;font-size: 0.5rem;}	
+			.dm-bottoml a{width: 8.5rem;height: 0.8rem;border-right: 0.025rem solid #e6e6e6;float: left;color: #20bc22;margin-top: 0.3rem;text-align: center;}
+			.dm-bottomr a{width: 7.425rem;height: 0.8rem;float: left;color: #20bc22;margin-top: 0.45em;text-align: center;}
+			.dm-bottom img{width: 0.5rem;height: 0.475rem;}
+			
+			#yl{height: 14.5rem;border-bottom: 0.275rem solid #f0f0f0;}
+			.yl-top{height:1.65rem;font-size:0.6rem;margin:0 0.3rem;}
+			.yl-top img{width: 0.85rem;height: 0.85rem;margin-top: 0.3rem;float: left;}
+			.yl-top span{height:1.65rem;margin-left: 0.275rem;line-height: 1.5rem;display: block;float: left;}
+			#yl ul{height: 11.5rem;padding: 0 0.3rem;}
+			#yl ul li{width: 7.525rem;heigh:5.55rem;font-size: 0.5rem;float: left;}
+			#yl ul img{width: 7.525rem;height: 4.275rem;}
+			#yl ul li a:nth-child(2){height: 1.275rem;line-height: 1.275rem;}
+			.yl-bottom{border-top:0.025rem solid #e6e6e6 ;height: 1.5rem;color: #20bc22;font-size: 0.5rem;text-align: center;line-height: 1.5rem;}				
+			.yl-bottom img{width: 0.5rem;height: 0.475rem;}
+			
+			#yc{height: 14.5rem;border-bottom: 0.275rem solid #f0f0f0;}
+			.yc-top{height:1.65rem;font-size:0.6rem;margin:0 0.3rem;}
+			.yc-top img{width: 0.65rem;height: 0.85rem;margin-top: 0.3rem;float: left;}
+			.yc-top span{height:1.65rem;margin-left: 0.275rem;line-height: 1.5rem;display: block;float: left;}
+			#yc ul{height: 11.5rem;padding: 0 0.3rem;}
+			#yc ul li{width: 7.525rem;heigh:5.55rem;font-size: 0.5rem;float: left;}
+			#yc ul img{width: 7.525rem;height: 4.275rem;}
+			#yc ul li a:nth-child(2){height: 1.275rem;line-height: 1.275rem;}
+			.yc-bottom{border-top:0.025rem solid #e6e6e6 ;height: 1.5rem;color: #20bc22;font-size: 0.5rem;text-align: center;line-height: 1.5rem;}				
+			.yc-bottom img{width: 0.5rem;height: 0.475rem;}
+			
+			#jk{height: 9.75rem;border-bottom: 0.275rem solid #f0f0f0;}
+			.jk-top{height:1.65rem;font-size:0.6rem;margin:0 0.3rem;}
+			.jk-top img{width: 0.875rem;height: 0.775rem;margin-top: 0.4rem;float: left;}
+			.jk-top span{height:1.65rem;margin-left: 0.275rem;line-height: 1.5rem;display: block;float: left;}
+			#jk ul{height: 6.47rem;padding: 0 0.3rem;}
+			#jk ul li{width: 7.525rem;heigh:5.55rem;font-size: 0.55rem;float: left;}
+			#jk ul img{width: 7.525rem;height: 4.275rem;}
+			#jk ul li a:nth-child(2){height: 2.1rem;line-height: 0.95rem;}
+			.jk-bottom{border-top:0.025rem solid #e6e6e6 ;height: 1.5rem;color: #20bc22;font-size: 0.5rem;text-align: center;line-height: 1.5rem;}				
+			.jk-bottom img{width: 0.5rem;height: 0.475rem;}
+			
+			#jlp{height: 9rem;border-bottom: 0.275rem solid #f0f0f0;}
+			.jlp-top{height:1.65rem;font-size:0.6rem;margin:0 0.3rem;}
+			.jlp-top img{width: 0.875rem;height: 0.775rem;margin-top: 0.4rem;float: left;}
+			.jlp-top span{height:1.65rem;margin-left: 0.275rem;line-height: 1.5rem;display: block;float: left;}
+			#jlp ul{height: 5.62rem;padding: 0 0.3rem;}
+			#jlp ul li{width: 7.525rem;heigh:5.55rem;font-size: 0.5rem;float: left;}
+			#jlp ul img{width: 7.525rem;height: 4.275rem;}
+			#jlp ul li a:nth-child(2){height: 1.275rem;line-height: 1.275rem;}
+			.jlp-bottom{border-top:0.025rem solid #e6e6e6 ;height: 1.5rem;color: #20bc22;font-size: 0.5rem;text-align: center;line-height: 1.5rem;}				
+			.jlp-bottom img{width: 0.5rem;height: 0.475rem;}
+			
+			#yytj{height: 8rem;border-bottom: 0.275rem solid #f0f0f0;}
+			.yytj-top{height:1.65rem;font-size:0.6rem;margin:0 0.3rem;}
+			.yytj-top img{width: 0.875rem;height: 0.775rem;margin-top: 0.4rem;float: left;}
+			.yytj-top span{height:1.65rem;margin-left: 0.275rem;line-height: 1.5rem;display: block;float: left;}
+			#yytja{height: 4.825rem;display: -webkit-box;-webkit-box-orient:horizontal;}
+			#yytja span{display: block;height: 4.825rem;-webkit-box-flex:1;text-align: center;	font-size: 0.45rem;}
+			#yytja span img{width:3.525rem;height:3.525rem;display: block;margin:0rem auto 0.425rem;}
+			.yytj-bottom{margin:0 0.3rem;border-top:0.025rem solid #e6e6e6 ;height: 1.5rem;color: #20bc22;font-size: 0.5rem;text-align: center;line-height: 1.5rem;}				
+			.yytj-bottom img{width: 0.5rem;height: 0.475rem;}
+			
+			#yjfk{margin:0 0.3rem;border-top:0.025rem solid #e6e6e6 ;height: 1.5rem;color: #20bc22;font-size: 0.5rem;text-align: center;line-height: 1.5rem;}				
+			#yjfk img{width: 0.55rem;height: 0.5rem;}
+			#foot{height: 1.75rem;background: #f0f0f0;text-align: center;padding-top: 0.625rem;}
+			#foot img{width: 3.75rem;height: 1.125rem;}
+			
+			.ycsou{width:100%;position:fixed;left:0;top:0;z-index:200;display:none;}
+			.ycsou .search_top{width:100%;height:1.875rem;background:#191919;position:relative;}
+			.ycsou .search_top input{width:75%;height:1.25rem;line-height:1.25rem;border-radius:0.7rem;background:#fff url(img/search_3.png) no-repeat 0.2rem 0.2rem;background-size:0.9rem 0.9rem;margin:0.3rem;text-indent:1.2rem;font-size:0.65rem;float:left;}
+			.ycsou .search_top i.cancel{display:none;width:1rem;height:1rem;border-radius:50%;background:rgba(0,0,0,0.2);text-align:center;line-height:0.95rem;position:absolute;left:69%;top:0.55rem;}
+			.ycsou .search_top i.cancel img{width:0.6rem;}
+			.ycsou .search_top a{display:inline-block;width:16%;height:1.2rem;font-size:0.55rem;color:#666666;line-height:1.2rem;text-align:center;border-radius:0.8rem;background:#ededed;float:left;margin:0.3rem;float:right;}
+			.ycsou ul{width:100%;overflow:hidden;background:rgba(255,255,255,0.96);}
+			.ycsou ul li{width:100%;height:1.6rem;line-height:1.6rem;border-bottom:1px solid #e6e6e6;text-indent:0.4rem;font-size:0.55rem;color:#333333;}		
+			
+			#fhdb{width:2rem;height:2rem;border-radius:50%;background:rgba(0,0,0,0.7);text-align:center;position:fixed;right:0.3rem;bottom:2rem;font-size:0.5rem;color:#fff;z-index:2;display:none;}
+ 			#fhdb img{idth:0.8rem;margin:0.3rem 0;}		
+			
+		</style>
+	</head>
+	<body>
+		<div id="top">
+			<img src="img/iqiyi-logo.png" class="Imga" />
+			<img src="img/sousuo.png" class="Imgb" id="Imgb" />
+			<img src="img/lixian.png" class="Imgc" />
+			<a href="#" class="ab">下载APP</a>
+			<a href="#" class="aa">登录</a>
+		</div>
+		<nav id="nav">
+			<div id="nava">
+				<a href="首页.html" class="banner-navive">精选</a>
+				<a href="推荐.html">VIP会员</a>
+				<a href="推荐.html">电视剧</a>
+				<a href="推荐.html">电影</a>
+				<a href="推荐.html">综艺</a>
+				<a href="推荐.html">动漫</a>
+				<a href="推荐.html">资讯</a>
+				<a href="推荐.html">娱乐</a>
+				<a href="推荐.html">原创</a>
+				<a href="推荐.html">搞笑</a>
+				<a href="推荐.html">健康</a>
+				<a href="推荐.html">生活</a>
+				<a href="推荐.html">母婴</a>
+				<a href="推荐.html">脱口秀</a>
+				<a href="推荐.html">军事</a>
+				<a href="推荐.html">片花</a>
+				<a href="推荐.html">旅游</a>
+				<a href="推荐.html">时尚</a>
+				<a href="推荐.html">教育</a>
+				<a href="推荐.html">财经</a>
+				<a href="推荐.html">音乐</a>
+				<a href="推荐.html">汽车</a>
+				<a href="推荐.html">纪录片</a>
+				<a href="推荐.html">体育</a>
+				<a href="推荐.html">少儿</a>
+				<a href="推荐.html">游戏</a>
+				<a href="推荐.html">科技</a>
+				<a href="推荐.html">网络电影</a>
+				<a href="推荐.html">拍客</a>
+			</div>
+			<span><img src="img/nav.png"/></span>
+		</nav>
+		<div id="sousuo">
+			<span href="#" id="search">
+				<img src="img/sou.png"" /> 胭脂
+			</span>
+		</div>		
+		<div class="banner">
+			<div class="banner_img" id="banner_img">
+				<ul id="banner">
+					<li><a href="html/视频.html"><img src="img/banner.png"></a></li>
+					<li><a href="html/视频.html"><img src="img/bannera.png"></a></li>
+					<li><a href="html/视频.html"><img src="img/bannerb.png"></a></li>
+					<li><a href="html/视频.html"><img src="img/bannerc.png"></a></li>
+					<li><a href="html/视频.html"><img src="img/bannerd.png"></a></li>
+				</ul>
+				<div class="dot" id="dot">
+					<span class="active"></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+				<div class="count">10-26期</div>
+			</div>
+			<p>另一个我：真人版美女与野兽</p>
+		</div>	
+		
+		<div id="banner-nav">
+			<div id="banner-nava">
+				<div>
+					<img src="img/nava.png">
+					<p>会员俱乐部</p>
+				</div>
+				<div>
+					<img src="img/navb.png">
+					<p>片单</p>
+				</div>
+				<div>
+					<img src="img/navc.png">
+					<p>微信热搜榜</p>
+				</div>
+				<div>
+					<img src="img/navd.png">
+					<p>游戏中心</p>
+				</div>
+				<div>
+					<img src="img/nave.png">
+					<p>电影票</p>
+				</div>
+				<div>
+					<img src="img/navf.png">
+					<p>应用商店</p>
+				</div>
+				<div>
+					<img src="img/navf.png">
+					<p>商城</p>
+				</div>
+				<div>
+					<img src="img/navg.png">
+					<p>更多</p>
+				</div>
+			</div>
+		</div>
+		<div id="jrzx">
+			<div class="jrzx-top">
+				<img src="img/jrzx.png"><span>今日资讯</span>
+			</div>
+			<div class="jrzx-nav"><a href="视频.html"><img src="img/bf.png"><span>　国防部:国产航母主船体合拢成型 正安装设备</span></a></div>
+			<div class="jrzx-nav" style="margin-top: 0.5rem;"><a href="视频.html"><img src="img/bf.png"><span>　专家:中国帆船手郭川因突发事故落水失联</span></a></div>
+			<ul>
+				<li><a href="视频.html"><img src="img/a01.png"></a><a href="#">蓝瘦香菇主人公私照曝光</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/a02.png"></a><a href="#">男运动员与20岁女儿共浴</a></li>
+				<li><a href="视频.html"><img src="img/a03.png"></a><a href="#">汉中持续秋雨山体塌方</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/a04.png"></a><a href="#">老汉找警车碰瓷</a></li>
+			</ul>
+			<div class="jrzx-bottom">
+				<div class="jrzx-bottoml"><a href="#">更多咨询　<img src="img/bf.png"></a></div>
+				<div class="jrzx-bottomr"><a href="#">换一批　<img src="img/huan.png"></a></div>
+			</div>
+		</div>
+		<div id="dsj">
+			<div class="dsj-top">
+				<img src="img/dsj.png"><span>电视剧</span>
+			</div>			
+			<ul>
+				<li style="margin-left: 0rem;"><a href="视频.html"><img src="img/a05.png"></a><a href="#">寒山令</a></li>
+				<li><a href="视频.html"><img src="img/a06.png"></a><a href="#">暗战危城</a></li>
+				<li><a href="视频.html"><img src="img/a07.png"></a><a href="#">美人为馅</a></li>
+				<li style="margin-left: 0rem;;"><a href="视频.html"><img src="img/a08.png"></a><a href="#">麻雀</a></li>
+				<li><a href="视频.html"><img src="img/a09.png"></a><a href="#">骡子和金子</a></li>
+				<li><a href="视频.html"><img src="img/a10.png"></a><a href="#">胭脂</a></li>
+			</ul>
+			<div class="dsj-bottom">
+				<div class="dsj-bottoml"><a href="#">更多电视剧　<img src="img/bf.png"></a></div>
+				<div class="dsj-bottomr"><a href="#">换一批　<img src="img/huan.png"></a></div>
+			</div>
+		</div>
+		<div id="dy">
+			<div class="dy-top">
+				<img src="img/dy.png"><span>电影</span>
+			</div>			
+			<ul>
+				<li style="margin-left: 0rem;"><a href="视频.html"><img src="img/a11.png"></a><a href="#" style="height: 2.1rem;line-height: 0.95rem;">情色大亨</a></li>
+				<li><a href="视频.html"><img src="img/a12.png"></a><a href="#" style="height: 2.1rem;line-height: 0.95rem;">海底总动员2：多莉去哪儿</a></li>
+				<li><a href="视频.html"><img src="img/a13.png"></a><a href="#" style="height: 2.1rem;line-height: 0.95rem;">大话西游3</a></li>
+				<li style="margin-left: 0rem;;"><a href="视频.html"><img src="img/a14.png"></a><a href="#">九条命</a></li>
+				<li><a href="视频.html"><img src="img/a15.png"></a><a href="#">魔兽</a></li>
+				<li><a href="视频.html"><img src="img/a16.png"></a><a href="#">古巴浪人</a></li>
+			</ul>
+			<div class="dy-bottom">
+				<div class="dy-bottoml"><a href="#">更多电影　<img src="img/bf.png"></a></div>
+				<div class="dy-bottomr"><a href="#">换一批　<img src="img/huan.png"></a></div>
+			</div>
+		</div>
+		<div id="zy">
+			<div class="zy-top">
+				<img src="img/zy.png"><span>综艺</span>
+			</div>			
+			<ul>
+				<li><a href="视频.html"><img src="img/a17.png"></a><a href="#">笑霸来了</a><a href="#">美女全裸直播大保健 惨叫连连</a></li>
+				<li style="margin-left: 0.325rem;"><a href="#"><img src="img/a18.png"></a><a href="#">帕帕帮</a><a href="#">女星遭影帝掐脖辱骂</a></li>
+				<li><a href="#"><img src="img/a19.png"></a><a href="#">家政女皇</a><a href="#">心肝肾病变 耳朵能发现</a></li>
+				<li style="margin-left: 0.325rem;"><a href="#"><img src="img/a20.png"></a><a href="#">新娱乐在线</a><a href="#">张雨绮闪婚</a></li>
+				<li><a href="#"><img src="img/a21.png"></a><a href="#">我们在一起</a><a href="#">鲍春来李波儿公益之旅</a></li>
+				<li style="margin-left: 0.325rem;"><a href="#"><img src="img/a22.png"></a><a href="#">娱乐新天地</a><a href="#">陈佩斯为朱时茂“跑龙套”</a></li>
+			</ul>
+			<div class="zy-bottom">
+				<div class="zy-bottoml"><a href="#">更多综艺　<img src="img/bf.png"></a></div>
+				<div class="zy-bottomr"><a href="#">换一批　<img src="img/huan.png"></a></div>
+			</div>
+		</div>
+		<div id="dm">
+			<div class="dm-top">
+				<img src="img/dm.png"><span>动漫</span>
+			</div>			
+			<ul>
+				<li style="margin-left: 0rem;"><a href="#"><img src="img/a23.png"></a><a href="#">欧布奥特曼</a></li>
+				<li><a href="#"><img src="img/a24.png"></a><a href="#" >超心动 ：艺术之星</a></li>
+				<li><a href="#"><img src="img/a25.png"></a><a href="#" >航海王</a></li>
+				<li style="margin-left: 0rem;;"><a href="#"><img src="img/a26.png"></a><a href="#" style="height: 2.1rem;line-height: 0.95rem;">龙珠超</a></li>
+				<li><a href="#"><img src="img/a27.png"></a><a href="#" style="height: 2.1rem;line-height: 0.95rem;">熊出没之求日团团转</a></li>
+				<li><a href="#"><img src="img/a28.png"></a><a href="#" style="height: 2.1rem;line-height: 0.95rem;">青鬼</a></li>
+			</ul>
+			<div class="dm-bottom">
+				<div class="dm-bottoml"><a href="#">更多动漫　<img src="img/bf.png"></a></div>
+				<div class="dm-bottomr"><a href="#">换一批　<img src="img/huan.png"></a></div>
+			</div>
+		</div>
+		<div id="yl">
+			<div class="yl-top">
+				<img src="img/yl.png"><span>娱乐</span>
+			</div>
+			<ul>
+				<li><a href="#"><img src="img/a29.png"></a><a href="#">TFBOYS三周年音乐纪录片</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/a30.png"></a><a href="#">戚薇欧阳娜娜小龙虾庆生</a></li>
+				<li><a href="视频.html"><img src="img/a31.png"></a><a href="#">陆毅为贝儿办8岁生日派对</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/a32.png"></a><a href="#">林心如6月孕肚首曝光</a></li>
+			</ul>
+			<div class="yl-bottom">
+				<a href="#">更多娱乐　<img src="img/bf.png"></a>
+			</div>
+		</div>
+		<div id="yc">
+			<div class="yc-top">
+				<img src="img/yc.png"><span>原创</span>
+			</div>
+			<ul>
+				<li><a href="视频.html"><img src="img/a33.png"></a><a href="#">最不可思议的啪啪真人秀</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/a34.png"></a><a href="#">心碎！男友劈腿与小三同床</a></li>
+				<li><a href="视频.html"><img src="img/a35.png"></a><a href="#">小臭臭原创歌曲《孝为先》</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/a36.png"></a><a href="#">阿拉蕾吸粉 黄致列遭差评</a></li>
+			</ul>
+			<div class="yc-bottom">
+				<a href="#">更多原创　<img src="img/bf.png"></a>
+			</div>
+		</div>
+		<div id="jk">
+			<div class="jk-top">
+				<img src="img/jk.png"><span>健康</span>
+			</div>
+			<ul>
+				<li><a href="视频.html"><img src="img/a37.png"></a><a href="#">实拍精子进入女人体内的全过程</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/a38.png"></a><a href="#">啤酒肚如何影响啪啪啪？</a></li>
+			</ul>
+			<div class="jk-bottom">
+				<a href="#">更多健康　<img src="img/bf.png"></a>
+			</div>
+		</div>
+		<div id="jlp">
+			<div class="jlp-top">
+				<img src="img/jlp.png"><span>纪录片</span>
+			</div>
+			<ul>
+				<li><a href="视频.html"><img src="img/a39.png"></a><a href="#">世界上最胸大的女人</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/a40.png"></a><a href="#">人妖空姐服务 想体验吗？</a></li>
+			</ul>
+			<div class="jlp-bottom">
+				<a href="#">更多纪录片　<img src="img/bf.png"></a>
+			</div>
+		</div>
+		<div id="jlp">
+			<div class="jlp-top">
+				<img src="img/ly.png"><span>旅游</span>
+			</div>
+			<ul>
+				<li><a href="视频.html"><img src="img/a41.png"></a><a href="#">全是腐烂尸体的美国农场</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/a42.png"></a><a href="#">海怪暴卵 竟可以炒饭</a></li>
+			</ul>
+			<div class="jlp-bottom">
+				<a href="#">更多旅游　<img src="img/bf.png"></a>
+			</div>
+		</div>
+		<div id="jlp">
+			<div class="jlp-top">
+				<img src="img/jy.png"><span>教育</span>
+			</div>
+			<ul>
+				<li><a href="视频.html"><img src="img/a43.png"></a><a href="#">小猪一家亲</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/a44.png"></a><a href="#">经典家常菜大全</a></li>
+			</ul>
+			<div class="jlp-bottom">
+				<a href="#">更多教育　<img src="img/bf.png"></a>
+			</div>
+		</div>
+		<div id="jlp">
+			<div class="jlp-top">
+				<img src="img/ss.png"><span>时尚</span>
+			</div>
+			<ul>
+				<li><a href="视频.html"><img src="img/a45.png"></a><a href="#">8分钟瘦身操拥有迷人好身材</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/a46.png"></a><a href="#">Lady Gaga登封《T》10月号</a></li>
+			</ul>
+			<div class="jlp-bottom">
+				<a href="#">更多时尚　<img src="img/bf.png"></a>
+			</div>
+		</div>
+		<div id="jlp">
+			<div class="jlp-top">
+				<img src="img/se.png"><span>少儿</span>
+			</div>
+			<ul>
+				<li><a href="视频.html"><img src="img/a47.png"></a><a href="#">欢乐奇趣蛋</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/a48.png"></a><a href="#">颜色屋</a></li>
+			</ul>
+			<div class="jlp-bottom">
+				<a href="#">更多少儿　<img src="img/bf.png"></a>
+			</div>
+		</div>
+		<div id="jlp">
+			<div class="jlp-top">
+				<img src="img/sh.png"><span>生活</span>
+			</div>
+			<ul>
+				<li><a href="视频.html"><img src="img/a49.png"></a><a href="#">北京北苑家园路口9车相撞</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/a50.png"></a><a href="#">曹轩宾音乐工作客厅曝光</a></li>
+			</ul>
+			<div class="jlp-bottom">
+				<a href="#">更多生活　<img src="img/bf.png"></a>
+			</div>
+		</div>
+		<div id="jlp">
+			<div class="jlp-top">
+				<img src="img/gx.png"><span>搞笑</span>
+			</div>
+			<ul>
+				<li><a href="视频.html"><img src="img/a51.png"></a><a href="#">东北大汉大战香港古惑仔</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/a52.png"></a><a href="#">惊！天生只有半个头的小男孩</a></li>
+			</ul>
+			<div class="jlp-bottom">
+				<a href="#">更多搞笑　<img src="img/bf.png"></a>
+			</div>
+		</div>
+		<div id="jlp">
+			<div class="jlp-top">
+				<img src="img/cj.png"><span>财经</span>
+			</div>
+			<ul>
+				<li><a href="视频.html"><img src="img/a53.png"></a><a href="#">土豪炫富！13位美女当狗遛</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/a54.png"></a><a href="#">全家桶不够吃索赔1个亿</a></li>
+			</ul>
+			<div class="jlp-bottom">
+				<a href="#">更多财经　<img src="img/bf.png"></a>
+			</div>
+		</div>
+		<div id="jlp">
+			<div class="jlp-top">
+				<img src="img/qc.png"><span>汽车</span>
+			</div>
+			<ul>
+				<li><a href="视频.html"><img src="img/a55.png"></a><a href="#">牛！女司机绝招 气哭加塞男</a></li>
+				<li style="margin-left: 0.325rem;"><a href="#"><img src="img/a56.png"></a><a href="视频.html">梅赛德斯-奔驰 G 500 4x4</a></li>
+			</ul>
+			<div class="jlp-bottom">
+				<a href="#">更多汽车　<img src="img/bf.png"></a>
+			</div>
+		</div>
+		<div id="jlp">
+			<div class="jlp-top">
+				<img src="img/js.png"><span>军事</span>
+			</div>
+			<ul>
+				<li><a href="视频.html"><img src="img/a57.png"></a><a href="#">日本坦克这动作中国都做不到</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/a58.png"></a><a href="#">歪果仁看完后都说北斗牛</a></li>
+			</ul>
+			<div class="jlp-bottom">
+				<a href="#">更多军事　<img src="img/bf.png"></a>
+			</div>
+		</div>
+		<div id="jlp">
+			<div class="jlp-top">
+				<img src="img/my.png"><span>母婴</span>
+			</div>
+			<ul>
+				<li><a href="视频.html"><img src="img/a49.png"></a><a href="#">谁能保护多灾多难的艾莎公主</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/a50.png"></a><a href="#">正确母乳喂养视频</a></li>
+			</ul>
+			<div class="jlp-bottom">
+				<a href="#">更多母婴　<img src="img/bf.png"></a>
+			</div>
+		</div>
+		<div id="yytj">
+			<div class="yytj-top">
+				<img src="img/yytj.png"><span>应用推荐</span>
+			</div>
+			<div id="yytja">
+				<span><img src="img/a61.png">爱奇艺视频</span>
+				<span><img src="img/a62.png">爱奇艺PPS</span>
+				<span><img src="img/a63.png">爱奇艺动画屋</span>
+				<span><img src="img/a64.png">爱奇艺啪啪奇</span>
+			</div>
+			<div class="yytj-bottom">
+				<a href="#">更多应用　<img src="img/bf.png"></a>
+			</div>
+		</div>
+		<div id="yjfk">
+			<a href="#"><img src="img/yjfk.png">　意见反馈</a>
+		</div>
+		<div id="foot">
+			<img src="img/foot.png" />
+		</div>
+		
+		<div class="ycsou" id="ycsou">
+			<div class="search_top">
+				<input type="text" placeholder="胭脂" id="Ipt" />
+				<i class="cancel" id="qx">
+					<img src="img/cancel.png" alt="" />
+				</i>
+				<a href="#" id="quxiao">取消</a>
+			</div>
+			<ul>
+				<li>美人为陷</li>
+				<li>胭脂</li>
+				<li>熊出没</li>
+				<li>老九门</li>
+				<li>麻雀</li>
+			</ul>
+		</div>
+		
+		
+		
+		<a href="#" id="fhdb">
+			<img src="img/top.png" /><br />
+			顶部
+		</a>		
+		
+		<script>	
+		    document.documentElement.style.fontSize = innerWidth/16 + 'px';
+		    onresize = function(){
+				document.documentElement.style.fontSize = innerWidth/16 + 'px';
+	    	};
+    	</script>
+	</body>
+</html>

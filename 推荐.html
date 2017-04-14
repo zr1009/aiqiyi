@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+		<script src="js/zepto.js"></script>
+		<script src="js/zepto.fx.js"></script>
+		<script src="js/zTouch.min.js"></script>
+		<script src="js/tjjs.js"></script>
+		<title></title>
+		<style>
+			*{margin:0;padding: 0;list-style: none;outline: none;font-family: "微软雅黑";color: #333;}
+			a{text-decoration: none;display: block;}
+			#top{width:100%;height: 1.875rem;background: #1f1f1f;border: 0.025rem solid #2e2e2e;border-bottom-color: #7c7c7c;position: fixed;top: 0;z-index: 100;}
+			.Imga{width: 3.125rem;height: 1.025rem;float: left;margin-top: 0.425rem;margin-left: 0.425rem;}
+			.Imgb{width: 0.875rem;height: 1.025rem;float: left;margin-top: 0.425rem;margin-left: 4.275rem;}
+			.Imgc{width: 0.875rem;height: 1.025rem;float: left;margin-top: 0.425rem;margin-left: 0.85rem;}
+			.aa{width: 1.25rem;height: 1.025rem;margin-top: 0.425rem;font-size: 0.525rem;color:#c8c8c8;text-align: center;line-height: 1.05rem;float: right;margin-right: 0.6rem;margin-top:0.425rem;}
+			.ab{width: 2.375rem;height: 0.825rem;margin-top: 0.55rem;font-size: 0.45rem;color:#0bbe06;text-align: center;line-height: 0.825rem;border: 0.025rem solid #0bbe06;border-radius:1rem;float: right;margin-right: 0.425rem;margin-top:0.425rem;}
+			nav {width:100%;height: 1.5rem;line-height: 1.5rem;background: #f4f4f4;border-bottom: 1px solid #dedede; position: fixed;left: 0;top: 1.875rem;overflow: hidden;z-index: 3;}
+ 			#nava {width:220%;height: 1.5rem;transition:all 0.3s ease;padding-right:2rem;position: absolute;left: 0;top: 0;}
+			#nava a {display: inline-block;height: 100%;box-sizing: border-box;font-size: 0.6rem;color: #333333;padding: 0 0.475rem;float: left;}
+			#nava a#banner-navive {color: #20bc22;border-bottom: 0.05rem solid #20bc22;}
+			nav span {display: inline-block;width: 1.925rem;height: 100%;line-height: 1.5rem;text-align: center;background: #f4f4f4;box-shadow: 0 0 0.4rem 0.4rem #dedede;position: absolute;right: 0;top: 0;}
+			nav span img {width: 0.75rem;}
+			.banner { width: 100%; height: 7.875rem; background: #fff; border-top: 1px solid #c8c8c8; border-bottom: 1px solid #e6e6e6; }
+			.banner_img {width: 97%;height: 6.4rem;overflow: hidden;margin: 0.3rem auto;position: relative;}
+			.banner_img ul {width: 1000%;position:absolute;left:0;top: 0.05rem;}
+			.banner_img ul li {width:10%;float: left;}
+			.banner_img ul li a img {width: 100%;}
+			.dot {width: 2.5rem;height: 0.5rem;background: rgba(0, 0, 0, 0.4);border-radius: 0.5rem;text-align: center;position: absolute;left: 50%;bottom: 0.3rem;margin-left: -1rem;}
+			.dot span {display: inline-block; width: 0.2rem;height: 0.2rem;border-radius: 50%;background: #cbcdce;margin: 0rem 0.02rem;margin-bottom: 0.75rem;}
+			.dot span.active {background: #20bc22;}
+			.count {height: 0.6rem;line-height: 0.6rem;font-size: 0.3rem;color: #fff;padding: 0 0.2rem; background: rgba(0, 0, 0, 0.7); position: absolute; right: 0;bottom: 0;}
+			.banner p {font-size: 0.5rem;line-height: 0.7rem;color: #333333;text-indent: 0.3rem;}	 								
+			#sousuo{height: 1.65rem;background: #ececec;border-bottom:0.025rem solid #c8c8c8;padding:0 0.3rem;position:fixed ;top:3.4rem;z-index: 150;}
+			#search {display: block;width: 15.35rem;height: 1.075rem;line-height: 1.075rem;text-align: center;font-size: 0.5rem;color: #20bc22;background: #fff;border: 1px solid #dcdcdc;border-radius: 1rem;margin: 0.2rem auto;}
+			#search img {width: 0.5rem;}
+			
+			#nav-a{height: 1.55rem;border-bottom: 0.05rem solid #f4f4f4;padding-top: 0.25rem;margin-top:3.4rem;}
+			#nav-a ul{height: 1.2rem;border: 0.05rem solid #20bc22;margin:0  0.35rem 0 0.35rem;border-radius:0.6rem ;font-size: 0.675rem;overflow: hidden;}	
+			#nav-a ul li a{float: left;width: 50%;text-align: center;line-height:1.2rem ;}
+			.nowa{color: #fff;background: #20bc22;}			
+			#banner{height: 7.8rem;}
+			#banner ul li{margin: 0.3rem;}
+			#banner ul li img{width: 100%;height: 100%;display: block;}
+			#banner ol li {padding: 0 0.3rem;height:1rem;font-size: 0.55rem;line-height: 0.6rem;}
+			#jrzx{height: 5.65rem;border-bottom: 0.275rem solid #f0f0f0;}
+			#jrzx ul{height: 5.65rem;padding: 0 0.3rem;}
+			#jrzx ul li{width: 7.525rem;heigh:5.65rem;font-size: 0.5rem;float: left;}
+			#jrzx ul img{width: 7.525rem;height: 4.275rem;}
+			#jrzx ul li a:nth-child(2){height: 1.275rem;line-height: 1.275rem;}
+			
+			#yc{height: 20.85rem;border-bottom: 0.275rem solid #f0f0f0;}
+			.yc-top{height:1.65rem;font-size:0.6rem;line-height:1.65rem;margin:0 0.3rem;}
+			#yc ul{height: 19rem;padding: 0 0.3rem;}
+			#yc ul li{width: 7.525rem;heigh:6.95rem;font-size: 0.5rem;float: left;}
+			#yc ul img{width: 7.525rem;height: 4.275rem;}
+			#yc ul li a:nth-child(2){height: 1.125rem;line-height: 1.125rem;font-size: 0.5rem;}
+			#yc ul li a:nth-child(3){height: 0.875rem;line-height: 0.45rem;font-size: 0.45rem;color: #666;}
+			
+			
+			#yytj{height: 8rem;border-bottom: 0.275rem solid #f0f0f0;}
+			.yytj-top{height:1.65rem;font-size:0.6rem;margin:0 0.3rem;}
+			.yytj-top img{width: 0.875rem;height: 0.775rem;margin-top: 0.4rem;float: left;}
+			.yytj-top span{height:1.65rem;margin-left: 0.275rem;line-height: 1.5rem;display: block;float: left;}
+			#yytja{height: 4.825rem;display: -webkit-box;-webkit-box-orient:horizontal;}
+			#yytja span{display: block;height: 4.825rem;-webkit-box-flex:1;text-align: center;	font-size: 0.45rem;}
+			#yytja span img{width:3.525rem;height:3.525rem;display: block;margin:0rem auto 0.425rem;}
+			.yytj-bottom{margin:0 0.3rem;border-top:0.025rem solid #e6e6e6 ;height: 1.5rem;color: #20bc22;font-size: 0.5rem;text-align: center;line-height: 1.5rem;}				
+			.yytj-bottom img{width: 0.5rem;height: 0.475rem;}
+			
+			#yjfk{margin:0 0.3rem;border-top:0.025rem solid #e6e6e6 ;height: 1.5rem;color: #20bc22;font-size: 0.5rem;text-align: center;line-height: 1.5rem;}				
+			#yjfk img{width: 0.55rem;height: 0.5rem;}
+			#foot{height: 1.75rem;background: #f0f0f0;text-align: center;padding-top: 0.625rem;}
+			#foot img{width: 3.75rem;height: 1.125rem;}
+			
+			
+			.ycsou{width:100%;position:fixed;left:0;top:0;z-index:200;display:none;}
+			.ycsou .search_top{width:100%;height:1.875rem;background:#191919;position:relative;}
+			.ycsou .search_top input{width:75%;height:1.25rem;line-height:1.25rem;border-radius:0.7rem;background:#fff url(img/search_3.png) no-repeat 0.2rem 0.2rem;background-size:0.9rem 0.9rem;margin:0.3rem;text-indent:1.2rem;font-size:0.65rem;float:left;}
+			.ycsou .search_top i.cancel{display:none;width:1rem;height:1rem;border-radius:50%;background:rgba(0,0,0,0.2);text-align:center;line-height:0.95rem;position:absolute;left:69%;top:0.55rem;}
+			.ycsou .search_top i.cancel img{width:0.6rem;}
+			.ycsou .search_top a{display:inline-block;width:16%;height:1.2rem;font-size:0.55rem;color:#666666;line-height:1.2rem;text-align:center;border-radius:0.8rem;background:#ededed;float:left;margin:0.3rem;float:right;}
+			.ycsou ul{width:100%;overflow:hidden;background:rgba(255,255,255,0.96);}
+			.ycsou ul li{width:100%;height:1.6rem;line-height:1.6rem;border-bottom:1px solid #e6e6e6;text-indent:0.4rem;font-size:0.55rem;color:#333333;}		
+			
+			
+			
+			#fhdb{width:2rem;height:2rem;border-radius:50%;background:rgba(0,0,0,0.7);text-align:center;position:fixed;right:0.3rem;bottom:2rem;font-size:0.5rem;color:#fff;z-index:2;display:none;}
+ 			#fhdb img{idth:0.8rem;margin:0.3rem 0;}	
+			
+		</style>
+	</head>
+	<body>
+		<div id="top">
+			<img src="img/iqiyi-logo.png" class="Imga" />
+			<img src="img/sousuo.png" class="Imgb" id="Imgb" />
+			<img src="img/lixian.png" class="Imgc" />
+			<a href="#" class="ab">下载APP</a>
+			<a href="#" class="aa">登录</a>
+		</div>
+		<nav id="nav">
+			<div id="nava">
+				<a href="首页.html" class="banner-navive">精选</a>
+				<a href="推荐.html">VIP会员</a>
+				<a href="推荐.html">电视剧</a>
+				<a href="推荐.html">电影</a>
+				<a href="推荐.html">综艺</a>
+				<a href="推荐.html">动漫</a>
+				<a href="推荐.html">资讯</a>
+				<a href="推荐.html">娱乐</a>
+				<a href="推荐.html">原创</a>
+				<a href="推荐.html">搞笑</a>
+				<a href="推荐.html">健康</a>
+				<a href="推荐.html">生活</a>
+				<a href="推荐.html">母婴</a>
+				<a href="推荐.html">脱口秀</a>
+				<a href="推荐.html">军事</a>
+				<a href="推荐.html">片花</a>
+				<a href="推荐.html">旅游</a>
+				<a href="推荐.html">时尚</a>
+				<a href="推荐.html">教育</a>
+				<a href="推荐.html">财经</a>
+				<a href="推荐.html">音乐</a>
+				<a href="推荐.html">汽车</a>
+				<a href="推荐.html">纪录片</a>
+				<a href="推荐.html">体育</a>
+				<a href="推荐.html">少儿</a>
+				<a href="推荐.html">游戏</a>
+				<a href="推荐.html">科技</a>
+				<a href="推荐.html">网络电影</a>
+				<a href="推荐.html">拍客</a>
+			</div>
+			<span><img src="img/nav.png"/></span>
+		</nav>
+		<div id="nav-a">
+			<ul> 
+				<li><a href="推荐.html" class="nowa">推荐</a></li>
+				<li><a href="片库.html" style="color:#20bc22;">片库</a></li>
+			</ul>
+		</div>
+		<div class="banner">
+			<div class="banner_img" id="banner_img">
+				<ul id="banner">
+					<li><a href="html/视频.html"><img src="img/banner.png"></a></li>
+					<li><a href="html/视频.html"><img src="img/bannera.png"></a></li>
+					<li><a href="html/视频.html"><img src="img/bannerb.png"></a></li>
+					<li><a href="html/视频.html"><img src="img/bannerc.png"></a></li>
+					<li><a href="html/视频.html"><img src="img/bannerd.png"></a></li>
+				</ul>
+				<div class="dot" id="dot">
+					<span class="active"></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+				<div class="count">10-26期</div>
+			</div>
+			<p>第八期 曹轩宾现场调制鸡尾酒</p>
+		</div>
+		<div id="jrzx">
+			<ul>
+				<li><a href="视频.html"><img src="img/b01.png"></a><a href="#">琴痴boy热衷暧昧</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/b02.png"></a><a href="#">国民闺女关凌称宋丹丹妈</a></li>
+		</div>
+		<div id="yc">
+			<div class="yc-top">内地</div>
+			<ul>
+				<li><a href="视频.html"><img src="img/b03.png"></a><a href="#">帕帕帮</a><a href="#">女性早哦影帝掐脖辱骂</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/b04.png"></a><a href="#">偶滴歌神啊第三季</a><a href="#">第12期 谢娜魔性热舞《痒》</a></li>
+				<li><a href="视频.html"><img src="img/b05.png"></a><a href="#">跨界喜剧王</a><a href="#">黄小蕾实力上演狂犬仙人跳</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/b06.png"></a><a href="#">十二道锋味第三季</a><a href="#">Twins活吃章鱼海肠遭整蛊</a></li>
+				<li><a href="视频.html"><img src="img/b07.png"></a><a href="#">娱乐猛回头</a><a href="#">杨幂撒娇上演直男斩</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/b08.png"></a><a href="#">非常完美</a><a href="#">美女制作微视频表白张耕嘉</a></li>
+			</ul>
+		</div>
+		<div id="yc">
+			<div class="yc-top">日韩</div>
+			<ul>
+				<li><a href="视频.html"><img src="img/b09.png"></a><a href="#">拜托了冰箱</a><a href="#">王嘉尔自称油腻boy</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/b10.png"></a><a href="#">我们结婚了</a><a href="#">泰美夫妇入住新婚房</a></li>
+				<li><a href="视频.html"><img src="img/b11.png"></a><a href="#">蒙面歌王</a><a href="#">昭宥称会坚持自我</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/b12.png"></a><a href="#">开放音乐会</a><a href="#">Apink 为警察献歌</a></li>
+				<li><a href="视频.html"><img src="img/b13.png"></a><a href="#">无限挑战</a><a href="#">明秀俊和回归田园变主仆</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/b14.png"></a><a href="#">两天一夜第3季</a><a href="#">回顾车太贤青涩新人剧</a></li>
+			</ul>
+		</div>
+		<div id="yc">
+			<div class="yc-top">自制</div>
+			<ul>
+				<li><a href="视频.html"><img src="img/b15.png"></a><a href="#">了不起的孩子</a><a href="#">第二期：昆凌曝料二胎计划</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/b16.png"></a><a href="#">世界上的里一个我-欧洲版</a><a href="#">第11集：真人版美女与野兽</a></li>
+				<li><a href="视频.html"><img src="img/b17.png"></a><a href="#">超能星探</a><a href="#">张雨绮疑有新恋情</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/b18.png"></a><a href="#">爱上超模第3季</a><a href="#">超模大战洛杉矶僵尸队</a></li>
+				<li><a href="视频.html"><img src="img/b19.png"></a><a href="#">WULI屋里变</a><a href="#">曹轩宾现场调制鸡尾酒</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/b20.png"></a><a href="#">泡菜帮</a><a href="#">雪莉晒照真空上阵竟凸点</a></li>
+			</ul>
+		</div>
+		<div id="yc">
+			<div class="yc-top">脱口秀</div>
+			<ul>
+				<li><a href="视频.html"><img src="img/b21.png"></a><a href="#">藏嘉Linda秀</a><a href="#">梵高的偶像竟靠画裸女为生</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/b22.png"></a><a href="#">老梁故事汇周播版</a><a href="#">揭秘太监为何都是武林高手</a></li>
+				<li><a href="视频.html"><img src="img/b23.png"></a><a href="#">四大名助第4季</a><a href="#">妻子念亡夫惹名助落泪</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/b24.png"></a><a href="#">欧阳不乱弹</a><a href="#">香港音乐风云的歌神</a></li>
+				<li><a href="视频.html"><img src="img/b25.png"></a><a href="#">夫妻牙尖帮</a><a href="#">儿童变声期 保嗓诀窍</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/b26.png"></a><a href="#">群英会</a><a href="#">田连元话说评书</a></li>
+			</ul>
+		</div>
+		<div id="yc">
+			<div class="yc-top">真人秀</div>
+			<ul>
+				<li><a href="视频.html"><img src="img/b27.png"></a><a href="#">我们在一起</a><a href="#">鲍春来李波儿公益之旅</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/b28.png"></a><a href="#">中国情歌汇</a><a href="#">巫启贤犀利点评嗨唱情歌</a></li>
+				<li><a href="视频.html"><img src="img/b29.png"></a><a href="#">我是直播歌手网络版</a><a href="#">直播赛第二期 高级班强势PK</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/b30.png"></a><a href="#">我家有明星</a><a href="#">余助力文华 柔术女挑战极限</a></li>
+				<li><a href="视频.html"><img src="img/b31.png"></a><a href="#">潮童天下</a><a href="#">萌娃机智回答 笑翻出题人</a></li>
+				<li style="margin-left: 0.325rem;"><a href="视频.html"><img src="img/b32.png"></a><a href="#">一块投吧</a><a href="#">甜美天使独创移动式酒吧</a></li>
+			</ul>
+		</div>
+		<div id="yytj">
+			<div class="yytj-top">
+				<img src="img/yytj.png"><span>应用推荐</span>
+			</div>
+			<div id="yytja">
+				<span><img src="img/a61.png">爱奇艺视频</span>
+				<span><img src="img/a62.png">爱奇艺PPS</span>
+				<span><img src="img/bd.png">百度浏览器</span>
+				<span><img src="img/a64.png">爱奇艺啪啪奇</span>
+			</div>
+			<div class="yytj-bottom">
+				<a href="#">更多应用　<img src="img/bf.png"></a>
+			</div>
+		</div>
+		<div id="yjfk">
+			<a href="#"><img src="img/yjfk.png">　意见反馈</a>
+		</div>
+		<div id="foot">
+			<img src="img/foot.png" />
+		</div>
+		
+		<div class="ycsou" id="ycsou">
+			<div class="search_top">
+				<input type="text" placeholder="胭脂" id="Ipt" />
+				<i class="cancel" id="qx">
+					<img src="img/cancel.png" alt="" />
+				</i>
+				<a href="#" id="quxiao">取消</a>
+			</div>
+			<ul>
+				<li>美人为陷</li>
+				<li>胭脂</li>
+				<li>熊出没</li>
+				<li>老九门</li>
+				<li>麻雀</li>
+			</ul>
+		</div>
+		
+		
+		
+		<a href="#" id="fhdb">
+			<img src="img/top.png" /><br />
+			顶部
+		</a>
+		
+		<script>	
+		    document.documentElement.style.fontSize = innerWidth/16 + 'px';
+		    onresize = function(){
+				document.documentElement.style.fontSize = innerWidth/16 + 'px';
+	    	};
+    	</script>
+	</body>
+</html>

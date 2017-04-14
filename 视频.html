@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+		<script src="js/zepto.js"></script>
+		<script src="js/zepto.fx.js"></script>
+		<script src="js/zTouch.min.js"></script>
+		<link rel="stylesheet" href="js/css.css" />
+		<script src="js/spjs.js"></script>
+		<title></title>
+		<style>
+			*{margin:0;padding: 0;list-style: none;outline: none;font-family: "微软雅黑";color: #333;}
+			a{text-decoration: none;display: block;}
+			#top{width:100%;height: 1.875rem;background: #1f1f1f;border: 0.025rem solid #2e2e2e;border-bottom-color: #7c7c7c;position: fixed;top: 0;z-index: 100;}
+			.Imga{width: 3.125rem;height: 1.025rem;float: left;margin-top: 0.425rem;margin-left: 0.425rem;}
+			.Imgb{width: 0.875rem;height: 1.025rem;float: left;margin-top: 0.425rem;margin-left: 4.275rem;}
+			.Imgc{width: 0.875rem;height: 1.025rem;float: left;margin-top: 0.425rem;margin-left: 0.85rem;}
+			.aa{width: 1.25rem;height: 1.025rem;margin-top: 0.425rem;font-size: 0.525rem;color:#c8c8c8;text-align: center;line-height: 1.05rem;float: right;margin-right: 0.6rem;margin-top:0.425rem;}
+			.ab{width: 2.375rem;height: 0.825rem;margin-top: 0.55rem;font-size: 0.45rem;color:#0bbe06;text-align: center;line-height: 0.825rem;border: 0.025rem solid #0bbe06;border-radius:1rem;float: right;margin-right: 0.425rem;margin-top:0.425rem;}
+			nav {width:100%;height: 1.5rem;line-height: 1.5rem;background: #f4f4f4;border-bottom: 1px solid #dedede; position: fixed;left: 0;top: 1.875rem;overflow: hidden;z-index: 3;}
+ 			#nava {width:220%;height: 1.5rem;transition:all 0.3s ease;padding-right:2rem;position: absolute;left: 0;top: 0;}
+			#nava a {display: inline-block;height: 100%;box-sizing: border-box;font-size: 0.6rem;color: #333333;padding: 0 0.475rem;float: left;}
+			#nava a:hover{background: url(img/bottom.png) repeat-x bottom;}
+			#banner-navive {color: #20bc22;border-bottom: 0.05rem solid #20bc22;}
+			nav span {display: inline-block;width: 1.925rem;height: 100%;line-height: 1.5rem;text-align: center;background: #f4f4f4;box-shadow: 0 0 0.4rem 0.4rem #dedede;position: absolute;right: 0;top: 0;}
+			nav span img {width: 0.75rem;} 								
+			#sousuo{height: 1.65rem;background: #ececec;border-bottom:0.025rem solid #c8c8c8;padding:0 0.3rem;position:fixed ;top:3.4rem;z-index: 150;}
+			#search {display: block;width: 15.35rem;height: 1.075rem;line-height: 1.075rem;text-align: center;font-size: 0.5rem;color: #20bc22;background: #fff;border: 1px solid #dcdcdc;border-radius: 1rem;margin: 0.2rem auto;}
+			#search img {width: 0.5rem;}
+			#banner{height: 7.8rem;}
+			#banner ul li{margin: 0.3rem;}
+			#banner ul li img{width: 100%;height: 100%;display: block;}
+			#banner ol li {padding: 0 0.3rem;height:1rem;font-size: 0.55rem;line-height: 0.6rem;}
+			.video{width:100%;height:7.575rem;background:#000;overflow: hidden;z-index:1;position:relative;margin-top: 3.4rem;color: #fff;}
+			.video video{width:100%;height:100%;z-index:1;}
+			.pause{width:2.58rem;height:2.58rem;text-indent:0.9rem;line-height:2.58rem;
+border:1px solid #fff;border-radius:50%;position:absolute;left:50%;	top:50%;margin:-1.29rem 0 0 -1.29rem;background-color:rgba(0,0,0,0.4);background-image:url(img/play.png);background-repeat: no-repeat;background-position:0.9rem 0.7rem;background-size:0.9rem;}
+			.pause img{width:0.9rem;}
+ 			.control{width:100%;height:1.7rem;box-sizing:border-box;padding:0 0.15rem;line-height:1.7rem;color:#fff;transition:all 0.3s ease;position:absolute;left:0;bottom:0;background:rgba(0,0,0,0.7);}
+ 			.time{float:left;width:4.5rem;height:100%;font-size:0.4rem;text-align:center;color: #fff;}
+	 		.range{width:9rem;height:2px;background:#000;float:left;margin:0.8rem 0 0 0.3rem;position:relative;}
+			.dot{width:0.7rem;height:0.7rem;border-radius:50%;background:#fff;position:absolute;top:-0.3rem;
+	left:-5px;}
+			.rangeGo{width:0;height:100%;background:-webkit-linear-gradient(left, #035E29, #92ED6F)}
+			.full{float:right;margin-right:0.2rem;}
+			.full img{width:0.9rem;}
+ 			.nav-a{width:100%;overflow: hidden;background:#fff;padding:0.25rem 0;}
+ 			.open{display:block;width:96%;height:1.5rem;text-align:center;line-height:1.5rem;margin:0 auto;font-size:0.55rem;color:#fff;background:#01c000;letter-spacing: 2px;}
+ 			.act{width:100%;height:2.4rem;box-sizing: border-box;border-bottom:1px solid #e6e6e6;}
+ 			.pl{width:5.2rem;height:1.2rem;line-height:1.2rem;text-indent:1.2rem;font-size:0.4rem;color:#000;background:#f0f0f0;border-radius:0.5rem;position:relative;margin:0.5rem;float:left;}
+ 			.plImg{width:1.5rem;height:1.5rem;line-height:1.5rem;text-indent:0;text-align:center;background:#fff;border-radius:50%;position:absolute;top:-0.1rem;left:-1rem;
+box-shadow:2px 0 0.01rem 0.01rem #d0d0d0;margin-left:0.5rem;}
+ 			.plImg img{width:1.3rem;}
+			.dot{width:0.3rem;height:0.3rem;background:#ff5001;border-radius:50%;position:absolute;top:-0.1rem;right:-0.1rem;}
+ 			.lc{width:2.15rem;height:0.9rem;line-height:0.9rem;text-align:center;font-size:0.4rem;color:#c8c8c8;border:1px solid #d3d3d3;border-radius:0.5rem;float:left;margin-top:0.6rem;}
+ 			.act ul{height:1.7rem;float:right;margin-top:0.4rem;overflow: hidden;}
+			.act ul li{width:1.85rem;height:100%;text-align:center;float:left;font-size:0.4rem;color:#333333;border-right:1px solid #e6e6e6;}
+			.act ul li a{font-size:0.4rem;color:#333333;}
+ 			.act ul li a img{width:0.9rem;margin-bottom:0.2rem;}
+ 			.act ul li:last-child{border-right:none;}
+ 			.pf{width:100%;height:2.65rem;box-sizing:border-box;padding:0 0.5rem;line-height:1.3rem;}
+			.pf h1{font-size:0.5rem;color:#333333;}
+ 			.pf h1 img{float:right;width:0.8rem;margin-top:0.5rem;}
+			.pf p img{width:0.8rem;}
+			.pf p i{color:#666666;font-weight:bold;margin:0 0.5rem 0 0.3rem;}
+			.nav-b {width: 100%;height: 1.75rem;line-height: 0.85rem;text-align: center;border-top: 1px solid #e6e6e6;box-sizing: border-box;padding: 0.425rem 0;background: #fff;}
+			..more {width: 50%;height: 0.85rem;line-height: 0.85rem;border-right: 1px solid #e6e6e6;float: left;}
+			.change {width: 48%;height: 0.85rem;line-height: 0.85rem;float: left;}
+			.nav-b a {font-size: 0.5rem;color: #20bc22;}
+			.cnxh{width:100%;overflow: hidden;background:#fff;margin-top:0.25rem;}
+			.cnxh h1{height:1.5rem;line-height:1.5rem;text-indent: 0.3rem;font-size:0.6rem;color:#333333;}
+			.cnxhcon{width:100%;height:6.5rem;overflow: hidden;position:relative;}
+			.cnxhcon ul{width:28rem;height:6.5rem;padding:0 0.2rem;position:absolute;top:0;left:0;}
+			.cnxhcon ul li{width:3.5rem;margin:0 0.2rem;float:left;}
+			.cnxhcon ul li a{display:block;width:100%;height:100%;}
+			.cnxhcon ul li img{width:100%;}
+			.cnxhcon ul li p{line-height:1rem;}
+			.con{width:100%;overflow: hidden;background:#fff;margin-top:0.25rem;}
+			.con h1{height:1.5rem;line-height:1.5rem;text-indent: 0.3rem;font-size:0.6rem;color:#333333;}
+			.head{width:1.9rem;height:100%;text-align:center;float:left;}
+			.head img{width:80%;}
+			.pla input{width:13.7rem;height:1.5rem;line-height:1.5rem;background:#f5f5f5;border:1px solid #e6e6e6;border-radius:6px;color:#a9a9a9;font-size:0.5rem;text-indent:0.25rem;}
+			.fb{width:13.7rem;height:1.5rem;line-height:1.5rem;float:right;margin:0.3rem;display:none;}
+			.fb p.zs{width:3rem;float:left;color:#a9a9a9;font-size:0.4rem;}
+			.fb span{float:right;}			
+			.fb span a{display:inline-block;width:2rem;height:1rem;line-height:1rem;text-align:center;background: #01C000;color:#fff;font-size:0.4rem;}
+			.fb span a:first-child{color:#a9a9a9;background: none;}
+			.pinglun{width:100%;overflow: hidden;margin:0.5rem 0 0;padding-bottom:0.5rem;border-bottom:1px solid #e6e6e6;}
+			.pinglun:last-child{border-bottom:none;}
+			.comCont{width:85%;float:left;}
+			.comCont h2{height:1rem;line-height:1rem;color:#999999;float:left;}
+			.comCont p{width:100%;line-height:0.75rem;color:#333333;letter-spacing: 0.01rem;float:left;}
+			.time{width:4rem;line-height:1.3rem;color:#999999;float:left;}
+			.star{line-height:1.3rem;color:#999999;float:right;}
+			.star img{width:0.8rem;margin:0 0.2rem;}
+			.comCont ul{width:100%;overflow: hidden;background:#fafafa;float:left;border-radius:5px;}
+			.comCont ul li{width:100%;overflow: hidden;padding:0.3rem 0;border-bottom:1px solid #eeeeee;}
+			.comCont ul li:last-child{border-bottom: none;height:1.85rem;line-height:1.85rem;text-align:center;}
+			.comCont ul li>a{color:#20bc22;font-size:0.5rem;}
+			
+			#yjfk{border-top:0.3rem solid #F4F4F4 ;height: 1.5rem;color: #20bc22;font-size: 0.5rem;text-align: center;line-height: 1.5rem;}				
+			#yjfk img{width: 0.55rem;height: 0.5rem;}
+			#foot{height: 1.75rem;background: #f0f0f0;text-align: center;padding-top: 0.625rem;}
+			#foot img{width: 3.75rem;height: 1.125rem;}
+					
+			
+			.ycsou{width:100%;position:fixed;left:0;top:0;z-index:200;display:none;}
+			.ycsou .search_top{width:100%;height:1.875rem;background:#191919;position:relative;}
+			.ycsou .search_top input{width:75%;height:1.25rem;line-height:1.25rem;border-radius:0.7rem;background:#fff url(img/search_3.png) no-repeat 0.2rem 0.2rem;background-size:0.9rem 0.9rem;margin:0.3rem;text-indent:1.2rem;font-size:0.65rem;float:left;}
+			.ycsou .search_top i.cancel{display:none;width:1rem;height:1rem;border-radius:50%;background:rgba(0,0,0,0.2);text-align:center;line-height:0.95rem;position:absolute;left:69%;top:0.55rem;}
+			.ycsou .search_top i.cancel img{width:0.6rem;}
+			.ycsou .search_top a{display:inline-block;width:16%;height:1.2rem;font-size:0.55rem;color:#666666;line-height:1.2rem;text-align:center;border-radius:0.8rem;background:#ededed;float:left;margin:0.3rem;float:right;}
+			.ycsou ul{width:100%;overflow:hidden;background:rgba(255,255,255,0.96);}
+			.ycsou ul li{width:100%;height:1.6rem;line-height:1.6rem;border-bottom:1px solid #e6e6e6;text-indent:0.4rem;font-size:0.55rem;color:#333333;}				
+			
+			
+			#fhdb{width:2rem;height:2rem;border-radius:50%;background:rgba(0,0,0,0.7);text-align:center;position:fixed;right:0.3rem;bottom:2rem;font-size:0.5rem;color:#fff;z-index:2;display:none;}
+ 			#fhdb img{idth:0.8rem;margin:0.3rem 0;}	
+		</style>
+	</head>
+	<body>
+		<div id="top">
+			<img src="img/iqiyi-logo.png" class="Imga" />
+			<img src="img/sousuo.png" class="Imgb" id="Imgb" />
+			<img src="img/lixian.png" class="Imgc" />
+			<span class="ab">下载APP</span>
+			<span class="aa">登录</span>
+		</div>
+		<nav id="nav">
+			<div id="nava">
+				<a href="首页.html" class="banner-navive">精选</a>
+				<a href="推荐.html">VIP会员</a>
+				<a href="推荐.html">电视剧</a>
+				<a href="推荐.html">电影</a>
+				<a href="推荐.html">综艺</a>
+				<a href="推荐.html">动漫</a>
+				<a href="推荐.html">资讯</a>
+				<a href="推荐.html">娱乐</a>
+				<a href="推荐.html">原创</a>
+				<a href="推荐.html">搞笑</a>
+				<a href="推荐.html">健康</a>
+				<a href="推荐.html">生活</a>
+				<a href="推荐.html">母婴</a>
+				<a href="推荐.html">脱口秀</a>
+				<a href="推荐.html">军事</a>
+				<a href="推荐.html">片花</a>
+				<a href="推荐.html">旅游</a>
+				<a href="推荐.html">时尚</a>
+				<a href="推荐.html">教育</a>
+				<a href="推荐.html">财经</a>
+				<a href="推荐.html">音乐</a>
+				<a href="推荐.html">汽车</a>
+				<a href="推荐.html">纪录片</a>
+				<a href="推荐.html">体育</a>
+				<a href="推荐.html">少儿</a>
+				<a href="推荐.html">游戏</a>
+				<a href="推荐.html">科技</a>
+				<a href="推荐.html">网络电影</a>
+				<a href="推荐.html">拍客</a>
+			</div>
+			<span><img src="img/nav.png"/></span>
+		</nav>
+		<div class="video" id="videoBox">
+			<video src="1.mp4" id="video"></video>
+			<div class="pause" id="pause">
+			</div>
+			<div class="control" id="control">
+				<div class="time">
+					<span id="lose">00:00</span> / <span id="amount">0:00:00</span>
+				</div>
+				<div class="range" id="range">
+					<div class="dot" id="dot"></div>
+					<p class="rangeGo" id="rangeGo"></p>
+				</div>
+				<div class="full" id="full">
+					<img src="img/full.png"  />
+				</div>
+			</div>
+		</div>
+		
+		
+		
+
+		<div class="nav-a">
+			<a href="#" class="open">打开爱奇艺，提升3倍流畅度！</a>
+			<div class="act">
+				<div class="pl">评论：2765条
+					<div class="plImg"><img src="img/icon_12.png" alt="" /></div>
+					<div class="dot"></div>
+				</div>
+				<div class="lc">流畅</div>
+				<ul>
+					<li>
+						<a href="视频.html"><img src="img/icon_fx.png" alt="" /><br />分享</a>
+					</li>
+					<li>
+						<a href="视频.html"><img src="img/icon_sc.png" alt="" /><br />收藏</a>
+					</li>
+					<li>
+						<a href="视频.html"><img src="img/icon_download.png" alt="" /><br />下载</a>
+					</li>
+				</ul>
+			</div>
+			<div class="pf">
+				<h1>海底世界 <img src="img/down.png" alt="" /></h1>
+				<p style="font-size:0.4rem;"><img src="img/icon_video2.png" alt="" /><i>3747.4万</i><span style="color:#999999;">评分：</span><em style="color:#f9502c;">7.<i style="font-size:0.25rem;">6</i></em></p>
+			</div>
+ 		</div>
+
+		<div class="cnxh">
+			<h1>猜你喜欢</h1>
+			<div class="cnxhcon" id="act">
+				<ul id="cona">
+					<li>
+						<a href="视频.html">
+							<img src="img/a15.png" alt="" />
+							<p>上海公园</p>
+						</a>
+					</li>
+					<li>
+						<a href="视频.html">
+							<img src="img/a09.png" alt="" />
+							<p>城市游戏</p>
+						</a>
+					</li>
+					<li>
+						<a href="视频.html">
+							<img src="img/a27.png" alt="" />
+							<p>天降雄师</p>
+						</a>
+					</li>
+					<li>
+						<a href="视频.html">
+							<img src="img/a26.png" alt="" />
+							<p>黎明之眼</p>
+						</a>
+					</li>
+					<li>
+						<a href="视频.html">
+							<img src="img/a25.png" alt="" />
+							<p>狼图腾</p>
+						</a>
+					</li>
+					<li>
+						<a href="视频.html">
+							<img src="img/a24.png" alt="" />
+							<p>战狼</p>
+						</a>
+					</li>
+					<li>
+						<a href="视频.html">
+							<img src="img/a23.png" alt="" />
+							<p>寻龙诀</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="con">
+			<h1>评论</h1>
+			<div class="pla">
+				<div class="head">
+					<img src="img/head.png" alt="" />
+				</div>
+				<input type="text" placeholder="我来评论" id="addcon" />
+				<div class="fb" id="fb">
+					<p class="zs"><span id="zsLose">0</span>/140</p>
+					<span>
+						<a href="javascript:;" id="addCancel">取消</a>
+						<a href="#">发布</a>
+					</span>
+				</div>
+			</div>
+			<div class="pinglun">
+				<div class="head">
+					<img src="img/head.png" alt="" />
+				</div>
+				<div class="comCont">
+					<h2>图雅_qq2632</h2>
+					<p>何洁…</p>
+					<div class="time">
+						2015-11-10
+					</div>
+					<div class="star">
+						1269
+						<img src="img/icon_heart.png" alt="" />
+						<img src="img/icon_pl.png" alt="" />
+					</div>
+					<ul>
+						<li>
+							<div class="head">
+								<img src="img/head.png" alt="" />
+							</div>
+							<h2>匿名用户</h2>
+							<div class="comCont">
+								<p>回复：终于到了</p>
+								<div class="time">19小时前</div>
+								<div class="star"><img src="img/icon_pl.png" alt="" /></div>
+							</div>
+
+						</li>
+						<li>
+							<div class="head">
+								<img src="img/head.png" alt="" />
+							</div>
+							<h2>匿名用户</h2>
+							<div class="comCont">
+								<p>回复：终于到了</p>
+								<div class="time">19小时前</div>
+								<div class="star"><img src="img/icon_pl.png" alt="" /></div>
+							</div>
+
+						</li>
+						<li>
+							<div class="head">
+								<img src="img/head.png" alt="" />
+							</div>
+							<h2>匿名用户</h2>
+							<div class="comCont">
+								<p>回复：终于到了</p>
+								<div class="time">19小时前</div>
+								<div class="star"><img src="img/icon_pl.png" alt="" /></div>
+							</div>
+
+						</li>
+						<li>
+							<a href="#">查看更多回复</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="pinglun">
+				<div class="head">
+					<img src="img/head.png" alt="" />
+				</div>
+				<div class="comCont">
+					<h2>图雅_qq2632</h2>
+					<p>大牌我来了！</p>
+					<div class="time">
+						2015-11-10
+					</div>
+					<div class="star">
+						1269
+						<img src="img/icon_heart.png" alt="" />
+						<img src="img/icon_pl.png" alt="" />
+					</div>
+					<ul>
+						<li>
+							<div class="head">
+								<img src="img/head.png" alt="" />
+							</div>
+							<h2>匿名用户</h2>
+							<div class="comCont">
+								<p>回复：终于到了</p>
+								<div class="time">19小时前</div>
+								<div class="star"><img src="img/icon_pl.png" alt="" /></div>
+							</div>
+
+						</li>
+						<li>
+							<div class="head">
+								<img src="img/head.png" alt="" />
+							</div>
+							<h2>匿名用户</h2>
+							<div class="comCont">
+								<p>回复：终于到了</p>
+								<div class="time">19小时前</div>
+								<div class="star"><img src="img/icon_pl.png" alt="" /></div>
+							</div>
+
+						</li>
+						<li>
+							<div class="head">
+								<img src="img/head.png" alt="" />
+							</div>
+							<h2>匿名用户</h2>
+							<div class="comCont">
+								<p>回复：终于到了</p>
+								<div class="time">19小时前</div>
+								<div class="star"><img src="img/icon_pl.png" alt="" /></div>
+							</div>
+
+						</li>
+						<li>
+							<a href="#">查看更多回复</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="pinglun">
+				<div class="head">
+					<img src="img/head.png" alt="" />
+				</div>
+				<div class="comCont">
+					<h2>爱吃栗子の仲孙山芙</h2>
+					<p>可以看了 ，，，喜欢大宇！</p>
+					<div class="time">
+						2016-7-3
+					</div>
+					<div class="star">
+						241
+						<img src="img/icon_heart.png" alt="" />
+						<img src="img/icon_pl.png" alt="" />
+					</div>
+					<ul>
+						<li>
+							<div class="head">
+								<img src="img/head.png" alt="" />
+							</div>
+							<h2>匿名用户</h2>
+							<div class="comCont">
+								<p>回复：终于到了</p>
+								<div class="time">19小时前</div>
+								<div class="star"><img src="img/icon_pl.png" alt="" /></div>
+							</div>
+
+						</li>
+						<li>
+							<div class="head">
+								<img src="img/head.png" alt="" />
+							</div>
+							<h2>匿名用户4778887863w</h2>
+							<div class="comCont">
+								<p>回复：@匿名用户4754821635i 真狼中有狼王</p>
+								<div class="time">19小时前</div>
+								<div class="star"><img src="img/icon_pl.png" alt="" /></div>
+							</div>
+
+						</li>
+						<li>
+							<div class="head">
+								<img src="img/head.png" alt="" />
+							</div>
+							<h2>匿名用户</h2>
+							<div class="comCont">
+								<p>回复：终于到了</p>
+								<div class="time">19小时前</div>
+								<div class="star"><img src="img/icon_pl.png" alt="" /></div>
+							</div>
+
+						</li>
+						<li>
+							<a href="#">查看更多回复</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+	 	<div class="nav-b">
+			<a href="javascript:;">查看更多</a>
+		</div>
+		<div id="yjfk">
+			<a href="#"><img src="img/yjfk.png">　意见反馈</a>
+		</div>
+		<div id="foot">
+			<img src="img/foot.png" />
+		</div>
+		
+		<div class="ycsou" id="ycsou">
+			<div class="search_top">
+				<input type="text" placeholder="胭脂" id="Ipt" />
+				<i class="cancel" id="qx">
+					<img src="img/cancel.png" alt="" />
+				</i>
+				<a href="#" id="quxiao">取消</a>
+			</div>
+			<ul>
+				<li>美人为陷</li>
+				<li>胭脂</li>
+				<li>熊出没</li>
+				<li>老九门</li>
+				<li>麻雀</li>
+			</ul>
+		</div>	
+		
+		<a href="#" id="fhdb">
+			<img src="img/top.png" /><br />
+			顶部
+		</a>	
+		<script>	
+		    document.documentElement.style.fontSize = innerWidth/16 + 'px';
+		    onresize = function(){
+				document.documentElement.style.fontSize = innerWidth/16 + 'px';
+	    	};
+    	</script>
+	</body>
+</html>

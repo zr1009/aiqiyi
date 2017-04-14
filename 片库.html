@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+		<script src="js/zepto.js"></script>
+		<script src="js/zepto.fx.js"></script>
+		<script src="js/zTouch.min.js"></script>
+		<script src="js/pkjs.js"></script>
+		<title></title>
+		<style>
+			*{margin:0;padding: 0;list-style: none;outline: none;font-family: "微软雅黑";color: #333;}
+			a{text-decoration: none;display: block;}
+			#top{width:100%;height: 1.875rem;background: #1f1f1f;border: 0.025rem solid #2e2e2e;border-bottom-color: #7c7c7c;position: fixed;top: 0;z-index: 100;}
+			.Imga{width: 3.125rem;height: 1.025rem;float: left;margin-top: 0.425rem;margin-left: 0.425rem;}
+			.Imgb{width: 0.875rem;height: 1.025rem;float: left;margin-top: 0.425rem;margin-left: 4.275rem;}
+			.Imgc{width: 0.875rem;height: 1.025rem;float: left;margin-top: 0.425rem;margin-left: 0.85rem;}
+			.aa{width: 1.25rem;height: 1.025rem;margin-top: 0.425rem;font-size: 0.525rem;color:#c8c8c8;text-align: center;line-height: 1.05rem;float: right;margin-right: 0.6rem;margin-top:0.425rem;}
+			.ab{width: 2.375rem;height: 0.825rem;margin-top: 0.55rem;font-size: 0.45rem;color:#0bbe06;text-align: center;line-height: 0.825rem;border: 0.025rem solid #0bbe06;border-radius:1rem;float: right;margin-right: 0.425rem;margin-top:0.425rem;}
+			nav {width:100%;height: 1.5rem;line-height: 1.5rem;background: #f4f4f4;border-bottom: 1px solid #dedede; position: fixed;left: 0;top: 1.875rem;overflow: hidden;z-index: 3;}
+ 			#nava {width:220%;height: 1.5rem;transition:all 0.3s ease;padding-right:2rem;position: absolute;left: 0;top: 0;}
+			#nava a {display: inline-block;height: 100%;box-sizing: border-box;font-size: 0.6rem;color: #333333;padding: 0 0.475rem;float: left;}
+			#nava a#banner-navive {color: #20bc22;border-bottom: 0.05rem solid #20bc22;}
+			nav span {display: inline-block;width: 1.925rem;height: 100%;line-height: 1.5rem;text-align: center;background: #f4f4f4;box-shadow: 0 0 0.4rem 0.4rem #dedede;position: absolute;right: 0;top: 0;}
+			nav span img {width: 0.75rem;} 								
+			#sousuo{height: 1.65rem;background: #ececec;border-bottom:0.025rem solid #c8c8c8;padding:0 0.3rem;position:fixed ;top:3.4rem;z-index: 150;}
+			#search {display: block;width: 15.35rem;height: 1.075rem;line-height: 1.075rem;text-align: center;font-size: 0.5rem;color: #20bc22;background: #fff;border: 1px solid #dcdcdc;border-radius: 1rem;margin: 0.2rem auto;}
+			#search img {width: 0.5rem;}			
+			#nav-a{height: 1.55rem;border-bottom: 0.05rem solid #f4f4f4;padding-top: 0.25rem;margin-top:3.4rem;}
+			#nav-a ul{height: 1.2rem;border: 0.05rem solid #20bc22;margin:0  0.35rem 0 0.35rem;border-radius:0.6rem ;font-size: 0.675rem;overflow: hidden;}	
+			#nav-a ul li a{float: left;width: 50%;text-align: center;line-height:1.2rem ;}
+			.nowa{background: #20bc22;color: #fff;}			
+			section{width:100%;height:3.25rem;margin-top:0.3rem;}
+			section ul{width:100%;height:3.825rem;margin-top:0.3rem;}
+			section ul li{width:300%;height:1.275rem;line-height:1.275rem;font-size:0.525rem;text-indent:0.3rem;}
+			section ul li span{color:#20bc22;margin:0 0.25rem;float: left;}
+			section ul li a{color:#333333;margin:0 0.25rem;float: left;}
+			#dy{height: 59.8rem;border-bottom:0.3rem solid #f0f0f0;}
+			#dy ul{height: 17rem;padding: 0 0.3rem;}
+			#dy ul li{width: 4.925rem;heigh:8.4rem;font-size: 0.55rem;float: left;margin-left: 0.3rem;}			
+			#dy ul img{width: 4.925rem;height: 6.575rem;}
+			#dy ul li a:nth-child(2){height: 1.3rem;line-height: 1.3rem;}				
+			.yytj-bottom{margin:0 0.3rem;border-top:0.025rem solid #e6e6e6 ;height: 1.5rem;color: #20bc22;font-size: 0.5rem;text-align: center;line-height: 1.5rem;}				
+			.yytj-bottom img{width: 0.5rem;height: 0.475rem;}
+			
+			#yjfk{margin:0 0.3rem;height: 1.5rem;color: #20bc22;font-size: 0.5rem;text-align: center;line-height: 1.5rem;}				
+			#yjfk img{width: 0.55rem;height: 0.5rem;}
+			#foot{height: 1.75rem;background: #f0f0f0;text-align: center;padding-top: 0.625rem;}
+			#foot img{width: 3.75rem;height: 1.125rem;}
+			.ycsou{width:100%;position:fixed;left:0;top:0;z-index:200;display:none;}
+			.ycsou .search_top{width:100%;height:1.875rem;background:#191919;position:relative;}
+			.search_top input{width:75%;height:1.25rem;line-height:1.25rem;border-radius:0.7rem;background:#fff url(img/search_3.png) no-repeat 0.2rem 0.2rem;background-size:0.9rem 0.9rem;margin:0.3rem;text-indent:1.2rem;font-size:0.65rem;float:left;}
+			.search_top i.cancel{display:none;width:1rem;height:1rem;border-radius:50%;background:rgba(0,0,0,0.2);text-align:center;line-height:0.95rem;position:absolute;left:69%;top:0.55rem;}
+			.search_top i.cancel img{width:0.6rem;}
+			.search_top a{display:inline-block;width:16%;height:1.2rem;font-size:0.55rem;color:#666666;line-height:1.2rem;text-align:center;border-radius:0.8rem;background:#ededed;float:left;margin:0.3rem;float:right;}
+			.ycsou ul{width:100%;overflow:hidden;background:rgba(255,255,255,0.96);}
+			.ycsou ul li{width:100%;height:1.6rem;line-height:1.6rem;border-bottom:1px solid #e6e6e6;text-indent:0.4rem;font-size:0.55rem;color:#333333;}	
+			#fhdb{width:2rem;height:2rem;border-radius:50%;background:rgba(0,0,0,0.7);text-align:center;position:fixed;right:0.3rem;bottom:2rem;font-size:0.5rem;color:#fff;z-index:2;display:none;}
+ 			#fhdb img{idth:0.8rem;margin:0.3rem 0;}				
+		</style>
+	</head>
+	<body style="overflow-x: hidden;">
+		<div id="top">
+			<img src="img/iqiyi-logo.png" class="Imga" />
+			<img src="img/sousuo.png" class="Imgb" id="Imgb" />
+			<img src="img/lixian.png" class="Imgc" />
+			<a href="#" class="ab">下载APP</a>
+			<a href="#" class="aa">登录</a>
+		</div>
+		<nav id="nav">
+			<div id="nava">
+				<a href="首页.html" class="banner-navive">精选</a>
+				<a href="推荐.html">VIP会员</a>
+				<a href="推荐.html">电视剧</a>
+				<a href="推荐.html">电影</a>
+				<a href="推荐.html">综艺</a>
+				<a href="推荐.html">动漫</a>
+				<a href="推荐.html">资讯</a>
+				<a href="推荐.html">娱乐</a>
+				<a href="推荐.html">原创</a>
+				<a href="推荐.html">搞笑</a>
+				<a href="推荐.html">健康</a>
+				<a href="推荐.html">生活</a>
+				<a href="推荐.html">母婴</a>
+				<a href="推荐.html">脱口秀</a>
+				<a href="推荐.html">军事</a>
+				<a href="推荐.html">片花</a>
+				<a href="推荐.html">旅游</a>
+				<a href="推荐.html">时尚</a>
+				<a href="推荐.html">教育</a>
+				<a href="推荐.html">财经</a>
+				<a href="推荐.html">音乐</a>
+				<a href="推荐.html">汽车</a>
+				<a href="推荐.html">纪录片</a>
+				<a href="推荐.html">体育</a>
+				<a href="推荐.html">少儿</a>
+				<a href="推荐.html">游戏</a>
+				<a href="推荐.html">科技</a>
+				<a href="推荐.html">网络电影</a>
+				<a href="推荐.html">拍客</a>
+			</div>
+			<span><img src="img/nav.png"/></span>
+		</nav>
+		
+		<div id="nav-a">
+			<ul> 
+				<li><a href="推荐.html" style="color:#20bc22;">推荐</a></li>
+				<li><a href="片库.html" class="nowa">片库</a></li>
+			</ul>
+		</div>
+		<section id="list">
+			<ul>
+				<li><span>热搜榜</span>
+					<a href="#">好评榜</a>
+					<a href="#">新上线</a>
+				</li>
+				<li><span>全部类型</span>
+					<a href="#">动作</a>
+					<a href="#">喜剧</a>
+					<a href="#">爱情</a>
+					<a href="#">惊悚</a>
+					<a href="#">科幻</a>
+					<a href="#">恐怖</a>
+					<a href="#">其他</a>
+				</li>
+			</ul>
+		</section>		
+		<div id="dy">
+			<ul>
+				<li style="margin-left: 0rem;"><a href="视频.html"><img src="img/c01.png"></a><a href="#">熊出没之夺宝熊兵</a></li>
+				<li><a href="视频.html"><img src="img/c02.png"></a><a href="#" >微微一笑很倾城</a></li>
+				<li><a href="视频.html"><img src="img/c03.png"></a><a href="#" >反贪风暴2</a></li>
+				<li style="margin-left: 0rem;"><a href="视频.html"><img src="img/c04.png"></a><a href="#" style="height: 2.1rem;line-height: 0.95rem;">反贪风暴</a></li>
+				<li><a href="视频.html"><img src="img/c05.png"></a><a href="#" style="height: 2.1rem;line-height: 0.95rem;">老九门番外之二月花开</a></li>
+				<li><a href="视频.html"><img src="img/c06.png"></a><a href="#" style="height: 2.1rem;line-height: 0.95rem;">大话西游3</a></li>
+				<li style="margin-left: 0rem;"><a href="视频.html"><img src="img/c07.png"></a><a href="#" >美人鱼</a></li>
+				<li><a href="视频.html"><img src="img/c08.png"></a><a href="#" >血战铜锣湾2</a></li>
+				<li><a href="视频.html"><img src="img/c09.png"></a><a href="#" >鹿鼎记</a></li>
+				<li style="margin-left: 0rem;;"><a href="视频.html"><img src="img/c10.png"></a><a href="#" style="height: 2.1rem;line-height: 0.95rem;">死神来了</a></li>
+				<li><a href="视频.html"><img src="img/c11.png"></a><a href="#" style="height: 2.1rem;line-height: 0.95rem;">阴阳先生之阴阳中间站</a></li>
+				<li><a href="视频.html"><img src="img/c12.png"></a><a href="#" style="height: 2.1rem;line-height: 0.95rem;">夏洛特烦恼</a></li>
+				<li style="margin-left: 0rem;"><a href="视频.html"><img src="img/c13.png"></a><a href="#" style="height: 2.1rem;line-height: 0.95rem;">终结者3：机器人的觉醒</a></li>
+				<li><a href="视频.html"><img src="img/c14.png"></a><a href="#" style="height: 2.1rem;line-height: 0.95rem;">陆垚知马俐</a></li>
+				<li><a href="视频.html"><img src="img/c15.png"></a><a href="#" style="height: 2.1rem;line-height: 0.95rem;">非洲和尚</a></li>
+				<li style="margin-left: 0rem;;"><a href="视频.html"><img src="img/c16.png"></a><a href="#" style="height: 2.1rem;line-height: 0.95rem;">百鸟朝凤</a></li>
+				<li><a href="视频.html"><img src="img/c17.png"></a><a href="#" style="height: 2.1rem;line-height: 0.95rem;">血战铜锣湾</a></li>
+				<li><a href="视频.html"><img src="img/c18.png"></a><a href="#" style="height: 2.1rem;line-height: 0.95rem;">西游记之孙悟空三打白骨精</a></li>
+				<li style="margin-left: 0rem;"><a href="视频.html"><img src="img/c19.png"></a><a href="#">大鱼海棠</a></li>
+				<li><a href="视频.html"><img src="img/c20.png"></a><a href="#">使徒行者</a></li>
+			</ul>
+		</div>
+		<div id="yjfk">
+			<a href="#"><img src="img/yjfk.png">　意见反馈</a>
+		</div>
+		<div id="foot">
+			<img src="img/foot.png" />
+		</div>
+		
+		
+		
+		<div class="ycsou" id="ycsou">
+			<div class="search_top">
+				<input type="text" placeholder="胭脂" id="Ipt" />
+				<i class="cancel" id="qx">
+					<img src="img/cancel.png" alt="" />
+				</i>
+				<a href="#" id="quxiao">取消</a>
+			</div>
+			<ul>
+				<li>美人为陷</li>
+				<li>胭脂</li>
+				<li>熊出没</li>
+				<li>老九门</li>
+				<li>麻雀</li>
+			</ul>
+		</div>
+		
+		
+		
+		<a href="#" id="fhdb">
+			<img src="img/top.png" /><br />
+			顶部
+		</a>
+		
+		
+						
+		<script>	
+		    document.documentElement.style.fontSize = innerWidth/16 + 'px';
+		    onresize = function(){
+				document.documentElement.style.fontSize = innerWidth/16 + 'px';
+	    	};
+    	</script>
+	</body>
+</html>
